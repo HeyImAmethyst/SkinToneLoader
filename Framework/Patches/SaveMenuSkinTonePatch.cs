@@ -13,6 +13,9 @@ using System.IO;
 
 namespace SkinToneLoader.Framework.Patches
 {
+
+    // Class based on https://github.com/Floogen/FashionSense/blob/stable/FashionSense/Framework/Patches/Menus/SaveFileSlotPatch.cs. Fixed save file dublication bug.
+
     public class SaveMenuSkinTonePatch
     {
         private readonly Type _menu = typeof(SaveFileSlot);
@@ -28,7 +31,7 @@ namespace SkinToneLoader.Framework.Patches
         internal void Apply(Harmony harmony)
         {
             harmony.Patch(
-                AccessTools.Constructor(_menu, new[] { typeof(LoadGameMenu), typeof(Farmer) }), 
+                AccessTools.Constructor(_menu, new[] { typeof(LoadGameMenu), typeof(Farmer), typeof(int?) }), 
                 postfix: new HarmonyMethod(GetType(), nameof(SaveFileSlotPostfix))
             );
         }

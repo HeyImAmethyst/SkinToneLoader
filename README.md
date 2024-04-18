@@ -6,12 +6,12 @@ The functionality for this is an updated and modified version of the custom skin
 # Install
 
 - Install the latest version of SMAPI.
-- Install the mod from Nexus.
-- Unzip any Skin Tone Loader content packs into the Mods folder to install them.
+- Install the mod from Nexus and add it to your mods folder.
+- Unzip any Skin Tone Loader content packs into your Mods folder to install them.
 - Run the game using SMAPI.
 
 # Uninstall
-- simply delete the mod from the mods folder (Note that deleting this mod then loading the game afterward will reset the skin tone to the first default one).
+- Simply delete the mod from your mods folder (Note that deleting this mod then loading the game afterward will reset the skin tone to the first default one).
 
 **Creating a skin tone texture**
 

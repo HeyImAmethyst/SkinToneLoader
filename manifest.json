@@ -1,0 +1,9 @@
+﻿{
+    "Name": "Skin Tone Loader",
+    "Author": "HeyImAmethyst",
+    "Version": "1.0",
+    "Description": "Framework which adds more skin tones to Stardew Valley.",
+    "UniqueID": "HeyImAmethyst.SkinToneLoader",
+    "EntryDll": "SkinToneLoader.dll",
+    "MinimumApiVersion": "3.14.0"
+}

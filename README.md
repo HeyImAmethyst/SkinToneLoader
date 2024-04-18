@@ -5,7 +5,7 @@ The functionality for this is an updated and modified version of the custom skin
 
 # Install
 
-- Install the latest version of SMAPI.
+- Install the latest version of [SMAPI](https://smapi.io/).
 - Install the mod from Nexus and add it to your mods folder.
 - Unzip any Skin Tone Loader content packs into your Mods folder to install them.
 - Run the game using SMAPI.

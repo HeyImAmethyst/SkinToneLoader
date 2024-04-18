@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-	<GamePath>D:\Game Root\Game Apps\Steam Games\steamapps\common\Stardew Valley</GamePath>
-  </PropertyGroup>
-
-</Project>

@@ -5,6 +5,7 @@ The functionality for this is an updated and modified version of the custom skin
 
 # Install
 
+- Make sure the game is updated to at least version 1.6.4, otherwise it won't work.
 - Install the latest version of [SMAPI](https://smapi.io/).
 - Install the mod from Nexus and add it to your mods folder.
 - Unzip any Skin Tone Loader content packs into your Mods folder to install them.
@@ -15,9 +16,9 @@ The functionality for this is an updated and modified version of the custom skin
 
 **Creating a skin tone texture**
 
-The size of one skin color is a 1 x 3 texture (1 row of 3 pixels)
+The size of one skin tone is a 1 x 3 texture (1 row of 3 pixels)
 
-If you want to add multiple skin tones in a spritesheet your spritesheet will need to be of the size: number of skin colors x 3
+If you want to add multiple skin tones in a spritesheet your spritesheet will need to be of the size: number of skin tones x 3
 
 The process for adding skin tone content packs for this mod is the same for Get Glam except that some things have been renamed.
 
@@ -26,4 +27,4 @@ The process for adding skin tone content packs for this mod is the same for Get 
 - Create a folder in the pack named SkinTone.
 - Add in the skin tone textures with the name skinTones.png to the SkinTone folder.
 
-Just like with Get Glam, Skin Tone Loader only supports one skinTones.png per content pack and only adds up to 4096 skin colors including default skin colors from different content packs
+Just like with Get Glam, Skin Tone Loader only supports one skinTones.png per content pack and only adds up to 4096 skin tones including default skin colors from different content packs

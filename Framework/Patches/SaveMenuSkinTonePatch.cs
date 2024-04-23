@@ -30,9 +30,11 @@ namespace SkinToneLoader.Framework.Patches
 
         internal void Apply(Harmony harmony)
         {
+            modEntryInstance.Monitor.Log("Patching SaveFileSlot", LogLevel.Info);
+
             harmony.Patch(
                 AccessTools.Constructor(_menu, new[] { typeof(LoadGameMenu), typeof(Farmer), typeof(int?) }), 
-                postfix: new HarmonyMethod(GetType(), nameof(SaveFileSlotPostfix))
+                postfix: new HarmonyMethod(GetType(), nameof(SaveFileSlotSkinTonePostfix))
             );
         }
 
@@ -42,7 +44,7 @@ namespace SkinToneLoader.Framework.Patches
         /// <param name="__instance">The instance of the SaveFileSlot class</param>
         /// <param name="menu">The LoadGameMenuObject</param>
         /// <param name="farmer">The Farmer Object</param>
-        private static void SaveFileSlotPostfix(SaveFileSlot __instance, LoadGameMenu menu, Farmer farmer)
+        private static void SaveFileSlotSkinTonePostfix(SaveFileSlot __instance, LoadGameMenu menu, Farmer farmer)
         {
             SkinToneConfigModel model = SkinToneConfigModelManager.ReadCharacterLayout(modEntryInstance, farmer);
             LoadFarmersSkinToneForLoadMenu(farmer, model);

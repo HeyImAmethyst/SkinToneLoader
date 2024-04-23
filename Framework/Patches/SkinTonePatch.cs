@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Reflection.Emit;
+using static StardewValley.Menus.LoadGameMenu;
 
 namespace SkinToneLoader.Framework.Patches
 {
@@ -19,6 +20,7 @@ namespace SkinToneLoader.Framework.Patches
     /// </summary>
     public class SkinTonePatch
     {
+
         // Instance of ModEntry
         private static ModEntry modEntryInstance;
 
@@ -34,7 +36,9 @@ namespace SkinToneLoader.Framework.Patches
 
         internal void Apply(Harmony harmony)
         {
-            //Harmony.Patch(
+            modEntryInstance.Monitor.Log("Patching changeSkinColor()", LogLevel.Info);
+
+            //harmony.Patch(
             //    original: AccessTools.Method(typeof(Farmer), nameof(Farmer.changeSkinColor)),
             //    transpiler: new HarmonyMethod(GetType(), nameof(ChangeSkinColorTranspiler))
             //);
@@ -53,69 +57,6 @@ namespace SkinToneLoader.Framework.Patches
         /// <returns>The new instructions</returns>
         public static IEnumerable<CodeInstruction> ChangeSkinColorTranspiler(MethodBase orginal, IEnumerable<CodeInstruction> instructions, ILGenerator il)
         {
-            //try
-            //{
-            //    // Create a new list of instructions
-            //    List<CodeInstruction> newInstructions = new List<CodeInstruction>();
-            //    Label label = il.DefineLabel();
-
-            //    // Loop through each instruction and check for h*rdcoded ints
-            //    foreach (CodeInstruction codeInstruction in instructions)
-            //    {
-            //        // If the opcode equals Ldc_I4_S, or laymens terms, an int
-            //        if (codeInstruction.opcode == OpCodes.Ldc_I4_S)
-            //        {
-            //            // Create the new instruction and add it to the new list
-
-            //            //CodeInstruction newIntInstruction = codeInstruction.operand.Equals(0x18) ? 
-            //            //    new CodeInstruction(OpCodes.Call, typeof(SkinEditor).GetMethod(nameof(SkinEditor.GetNumberOfSkinColor))) 
-            //            //    : new CodeInstruction(OpCodes.Call, typeof(SkinEditor).GetMethod(nameof(SkinEditor.GetNumberOfSkinColorMinusOne)));
-
-            //            //if (codeInstruction.operand.Equals(0x18))
-            //            //{
-            //            //    newInstructions.Add(new CodeInstruction(OpCodes.Call, typeof(SkinEditor).GetMethod(nameof(SkinEditor.GetNumberOfSkinColor))));
-            //            //}
-            //            //else if (codeInstruction.operand.Equals(0x17))
-            //            //{
-            //            //    newInstructions.Add(new CodeInstruction(OpCodes.Call, typeof(SkinEditor).GetMethod(nameof(SkinEditor.GetNumberOfSkinColorMinusOne))));
-            //            //}
-
-            //            //CodeInstruction newIntInstruction = codeInstruction.operand.Equals(0x18) ?
-            //            //    new CodeInstruction(OpCodes.Call, typeof(SkinEditor).GetMethod(nameof(SkinEditor.GetNumberOfSkinColor))) :
-            //            //    codeInstruction.operand.Equals(0x17) ? new CodeInstruction(OpCodes.Call, typeof(SkinEditor).GetMethod(nameof(SkinEditor.GetNumberOfSkinColorMinusOne))) : null;
-
-            //            //if(newIntInstruction != null)
-            //            //    newInstructions.Add(newIntInstruction);
-
-            //            CodeInstruction newIntInstruction = codeInstruction;
-
-            //            if (codeInstruction.operand.Equals(0x18))
-            //            {
-            //                newInstructions.Add(new CodeInstruction(OpCodes.Call, typeof(SkinEditor).GetMethod(nameof(SkinEditor.GetNumberOfSkinColor))));
-            //            }
-            //            else if (codeInstruction.operand.Equals(0x17))
-            //            {
-            //                newInstructions.Add(new CodeInstruction(OpCodes.Call, typeof(SkinEditor).GetMethod(nameof(SkinEditor.GetNumberOfSkinColorMinusOne))));
-            //            }
-
-            //            newInstructions.Add(newIntInstruction);
-            //        }
-            //        else
-            //        {
-            //            // Just add the regular instruction to the list
-            //            newInstructions.Add(codeInstruction);
-            //        }
-            //    }
-
-            //    // Return the new instructions for the method
-            //    return newInstructions;
-            //}
-            //catch (Exception e)
-            //{
-            //    // Something went boom, so we abort and send the orginal method instructions
-            //    Entry.Monitor.Log($"Failed in {nameof(ChangeSkinColorTranspiler)}:\n{e}", LogLevel.Error);
-            //    return instructions;
-            //}
 
             try
             {
@@ -129,7 +70,6 @@ namespace SkinToneLoader.Framework.Patches
                     if (codeInstruction.opcode == OpCodes.Ldc_I4_S)
                     {
                         // Create the new instruction and add it to the new list
-                        //0x18 = 24
                         CodeInstruction newIntInstruction = codeInstruction.operand.Equals(0x18) ? new CodeInstruction(OpCodes.Call, typeof(SkinToneEditor).GetMethod(nameof(SkinToneEditor.GetNumberOfSkinTones))) : new CodeInstruction(OpCodes.Call, (typeof(SkinToneEditor).GetMethod(nameof(SkinToneEditor.GetNumberOfSkinToneMinusOne))));
                         newInstructions.Add(newIntInstruction);
                     }
@@ -160,6 +100,7 @@ namespace SkinToneLoader.Framework.Patches
         /// <param name="___skin">The skin field in the Farmer class</param>
         /// <param name="__instance">The instance of the Farmer class</param>
         /// <returns>false</returns>
+        /// 
         public static bool ChangeSkinColorPrefix(int which, bool force, NetInt ___skin, Farmer __instance)
         {
             if (which < 0)
@@ -176,7 +117,5 @@ namespace SkinToneLoader.Framework.Patches
 
             return false;
         }
-
-
     }
 }

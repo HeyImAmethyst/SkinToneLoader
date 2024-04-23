@@ -47,18 +47,21 @@ namespace SkinToneLoader.Framework
         }
 
         /// <summary>
-        /// Patches changeSkinColor using a harmony transpiler.
+        /// Patches changeSkinColor and SaveFileSlot using a harmony patches.
         /// </summary>
         private void PatchSkinTone()
         {
             SkinTonePatch skinColorPatch = new SkinTonePatch(modEntry);
             SaveMenuSkinTonePatch saveMenuSkinTonePatch = new SaveMenuSkinTonePatch(modEntry);
-
-            modEntry.Monitor.Log("Patching changeSkinColor()", LogLevel.Trace);
-            modEntry.Monitor.Log("Patching SaveFileSlot", LogLevel.Trace);
+            CustomizationMenuPatch customizationMenuPatch = new CustomizationMenuPatch(modEntry);
 
             skinColorPatch.Apply(harmony);
             saveMenuSkinTonePatch.Apply(harmony);
+
+            if (modEntry.isFashionSenseInstalled)
+            {
+                customizationMenuPatch.Apply(harmony);
+            }
         }
     }
 }

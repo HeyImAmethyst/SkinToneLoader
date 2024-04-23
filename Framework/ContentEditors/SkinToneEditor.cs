@@ -84,6 +84,8 @@ namespace SkinToneLoader.Framework.ContentEditors
             ExportModdedTexture();
 
             Asset.AsImage().ReplaceWith(originalTexture);
+
+            Entry.Monitor.Log("Skin texture replaced with a total of " + SkinToneTextureHeight + " skin tones.", LogLevel.Info);
         }
 
         private void ExportModdedTexture()

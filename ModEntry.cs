@@ -38,6 +38,7 @@ namespace SkinToneLoader
         public string moddedSkinColorsPathString;
 
         bool wasEditMade;
+        public bool isFashionSenseInstalled;
 
         public override void Entry(IModHelper helper)
         {
@@ -47,7 +48,17 @@ namespace SkinToneLoader
 
             InitializeClasses();
             SetUpEvents();
-            HarmonyHelper.InitializeAndPatch();
+            CheckIfFashionSenseIsInstalled();
+
+            try
+            {
+                HarmonyHelper.InitializeAndPatch();
+            }
+            catch (Exception e)
+            {
+                Monitor.Log($"Issue with Harmony patching: {e}", LogLevel.Info);
+                return;
+            }
         }
 
         /// <summary>
@@ -137,6 +148,15 @@ namespace SkinToneLoader
         public bool DoesModdedSkinToneDirectoryExists()
         {
             return moddedSkinColorDirectory.Exists;
+        }
+
+        /// <summary>
+        /// Checks if the mod Fashion Sense is currently installed.
+        /// </summary>
+        private void CheckIfFashionSenseIsInstalled()
+        {
+            isFashionSenseInstalled = Helper.ModRegistry.IsLoaded("PeacefulEnd.FashionSense");
+            Monitor.Log($"Fashion Sense Installed: {isFashionSenseInstalled}", LogLevel.Trace);
         }
     }
 }

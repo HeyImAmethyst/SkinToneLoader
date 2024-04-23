@@ -34,7 +34,7 @@ namespace SkinToneLoader.Framework.Patches
 
         internal void Apply(Harmony harmony)
         {
-            modEntryInstance.Monitor.Log("Patching changeSkinColor()", LogLevel.Info);
+            modEntryInstance.Monitor.Log("Patching customization menu", LogLevel.Info);
 
             harmony.Patch(
                 AccessTools.Method(_menu, "selectionClick", new[] { typeof(string), typeof(int) }),

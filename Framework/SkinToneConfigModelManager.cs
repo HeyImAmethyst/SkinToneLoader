@@ -58,7 +58,7 @@ namespace SkinToneLoader.Framework
         {
             SkinToneConfigModel model = null;
 
-            if (farmer.slotName != null)
+            if (farmer != null)
             {
                 string localConfigPath = Path.Combine("Saves", $"{new DirectoryInfo(farmer.slotName)}_SkinToneConfig.json");
 

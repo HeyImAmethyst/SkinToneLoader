@@ -60,14 +60,16 @@ namespace SkinToneLoader.Framework
 
             if (farmer != null)
             {
-                string localConfigPath = Path.Combine("Saves", $"{new DirectoryInfo(farmer.slotName)}_SkinToneConfig.json");
+                if (farmer.slotName != null)
+                {
+                    string localConfigPath = Path.Combine("Saves", $"{new DirectoryInfo(farmer.slotName)}_SkinToneConfig.json");
 
-                model = entry.Helper.Data.ReadJsonFile<SkinToneConfigModel>(localConfigPath);
+                    model = entry.Helper.Data.ReadJsonFile<SkinToneConfigModel>(localConfigPath);
 
-                if (model == null)
-                    model = CreateNewConfigForSave(entry, localConfigPath, new DirectoryInfo(farmer.slotName).Name);
+                    if (model == null)
+                        model = CreateNewConfigForSave(entry, localConfigPath, new DirectoryInfo(farmer.slotName).Name);
+                }
             }
-            
 
             return model;
         }

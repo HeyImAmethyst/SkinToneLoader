@@ -47,13 +47,13 @@ namespace SkinToneLoader.Framework.Patches
             switch (name)
             {
                 case "Skin":
-                    Game1.player.changeSkinColor((int)Game1.player.skin + change);
+                    Game1.player.changeSkinColor(Game1.player.skin.Value + change);
                     Game1.playSound("skeletonStep");
                     break;
                 case "Hair":
                     {
                         List<int> allHairstyleIndices = Farmer.GetAllHairstyleIndices();
-                        int num2 = allHairstyleIndices.IndexOf(Game1.player.hair);
+                        int num2 = allHairstyleIndices.IndexOf(Game1.player.hair.Value);
                         num2 += change;
                         if (num2 >= allHairstyleIndices.Count)
                         {
@@ -77,7 +77,7 @@ namespace SkinToneLoader.Framework.Patches
                     Game1.playSound("coin");
                     break;
                 case "Acc":
-                    Game1.player.changeAccessory((int)Game1.player.accessory + change);
+                    Game1.player.changeAccessory((int)Game1.player.accessory.Value + change);
                     Game1.playSound("purchase");
                     break;
                 case "Direction":
@@ -109,7 +109,7 @@ namespace SkinToneLoader.Framework.Patches
 
                     break;
                 case "Wallets":
-                    if ((bool)Game1.player.team.useSeparateWallets)
+                    if ((bool)Game1.player.team.useSeparateWallets.Value)
                     {
                         Game1.playSound("coin");
                         Game1.player.team.useSeparateWallets.Value = false;
